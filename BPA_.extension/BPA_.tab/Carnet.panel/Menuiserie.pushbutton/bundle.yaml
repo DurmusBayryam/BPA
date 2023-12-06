@@ -1,0 +1,7 @@
+title: Menuiserie
+tooltip: Vous pouvez prépare des menuiserie dans projet pour Carnet_Menuiserie
+author: "Durmus BAYRYAM"
+references:
+engine:
+  clean: true
+  automate: false
