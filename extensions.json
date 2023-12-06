@@ -1,0 +1,31 @@
+{
+    "extensions": 
+	[
+        {
+            "builtin": "True",
+            "type": "extension",
+            "rocket_mode_compatible": "True",
+            "name": "PyRevitCore",
+            "description": "MEP extension for PyRevit",
+            "author": "Cyril Waechter",
+            "author_profile": "https://github.com/CyrilWaechter",
+            "url": "https://github.com/CyrilWaechter/pyRevitMEP.git",
+            "website": "http://pythoncvc.net/?page_id=123",
+            "image": "",
+            "dependencies": []
+        },     
+		{
+            "builtin": "False",
+            "type": "extension",
+            "rocket_mode_compatible": "True",
+            "name": "BPA",
+            "description": "BPA Architecture Plug-in 2024",
+            "author": "Durmus BAYRYAM",
+            "author_profile": "https://bpa.archi/",
+            "url": "https://github.com/DurmusBayryam/BPA.git",
+            "website": "",
+            "image": "",
+            "dependencies": []
+        }      
+    ]
+}
