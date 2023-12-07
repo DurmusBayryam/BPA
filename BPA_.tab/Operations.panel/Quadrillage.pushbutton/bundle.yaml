@@ -1,0 +1,7 @@
+title: Recadrer Quadrillage
+tooltip: Vous pouvez recadrer des quadrillages qui sont existé selon la vue actuelle.
+author: "Durmus BAYRYAM"
+references:
+engine:
+  clean: true
+  automate: false

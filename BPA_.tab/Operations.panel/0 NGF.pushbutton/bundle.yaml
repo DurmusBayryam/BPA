@@ -1,0 +1,7 @@
+title: 0 NGF
+tooltip: Vous pouvez régler automatiquement le NGF rez-de-chaussée.
+author: "Durmus BAYRYAM"
+references:
+engine:
+  clean: true
+  automate: false

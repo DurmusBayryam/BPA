@@ -1,0 +1,168 @@
+{
+  "Uuid": "668d6d7d-d4da-40ae-9680-e93f36587186",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Aligner Carrelage_script",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 571,
+      "SelectedString": "OST_Floors",
+      "NodeType": "ExtensionNode",
+      "Id": "b149db3c43c1416fb476940143213e96",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d056f5ddbf444de2a14d865959bbc25e",
+          "Name": "Category",
+          "Description": "Catégorie sélectionnée.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Toutes les catégories intégrées."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "98a42749c41d48568b1407034c6d94ae",
+      "Inputs": [
+        {
+          "Id": "97e48ac8b9e74a9aa1b8849625e13199",
+          "Name": "Category",
+          "Description": "Catégorie",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "58305d93344d417e8d4d316c2b0b3033",
+          "Name": "Elements",
+          "Description": "Type d'élément.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obtenir tous les éléments de la catégorie spécifiée du modèle."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#Inspired by Fair59 https://forums.autodesk.com/t5/revit-api-forum/use-of-align-function-programatically-to-change-the-alignment-of/td-p/6008184\n#Suggestion by Mark Ackerley\n\n#Alban de Chasteigner 2020\n#twitter : @geniusloci_bim\n#geniusloci.bim@gmail.com\n\nimport clr\nclr.AddReference(\"RevitAPI\")\nimport Autodesk\nfrom Autodesk.Revit.DB import *\n#import System\n#from System import Guid\n\nclr.AddReference(\"RevitServices\")\nimport RevitServices\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\ndoc = DocumentManager.Instance.CurrentDBDocument\n\nelements = UnwrapElement(IN[0]) if isinstance(IN[0],list) else [UnwrapElement(IN[0])]\n\nfor item in elements:\n\tif item.ToString() == 'Autodesk.Revit.DB.Floor' or item.ToString() == 'Autodesk.Revit.DB.RoofBase' or item.ToString() == 'Autodesk.Revit.DB.FootPrintRoof':\n\t\text = HostObjectUtils.GetTopFaces(item)\n\t\tend=0\n\telif item.ToString() == 'Autodesk.Revit.DB.Wall':\n\t\t#get the external face reference of the item as an array\n\t\text = HostObjectUtils.GetSideFaces(item,ShellLayerType.Exterior)\n\t\tend=1\n\telse :\n\t\text = HostObjectUtils.GetBottomFaces(item)\n\t\tend=1\n\t#for (the array containing) the external face reference, get it's geometry\n\tfor e in ext:\n\t\textFace = item.GetGeometryObjectFromReference(e)\n\t\t#get the external face surface edges as lines, get the first line (the bottom)\n\t\tfor\tcv in extFace.GetEdgesAsCurveLoops()[0]:\n\t\t\t#get the finish point of the line\n\t\t\tcorner = cv.GetEndPoint(end)\n\t\t#Check for model surfacepattern\n\t\tmat=doc.GetElement(extFace.MaterialElementId)\n\t\tpatternType = doc.GetElement(mat.SurfaceForegroundPatternId)\n\t\tpattern = patternType.GetFillPattern()\n\t\t#Get number of gridLines in pattern                \n\t\tgridCount = pattern.GridCount\n\t\t#Construct StableRepresentation to top face reference\n\t\tStableRef = e.ConvertToStableRepresentation(doc)\n\t\t\n\t\t#we want horizontal and vertical refs so we want 2 arrays\n\t\tfor hatchindex in range(0, gridCount):\n\t\t\trefAr = ReferenceArray()\n\t\t\tip=0\n\t\t\twhile ip<2:\n\t\t\t\t#generate an index for each hatch reference\n\t\t\t\tindex = (hatchindex+1) + (ip * gridCount *2)\n\t\t\t\t#create a string for each hatch reference using the face reference and hatch index\n\t\t\t\tStableHatchString = StableRef + str.Format(\"/{0}\", index)\n\t\t\t\t#generate a new reference for each hatch reference using the string\n\t\t\t\tHatchRef = Reference.ParseFromStableRepresentation(doc, StableHatchString)\n\t\t\t\trefAr.Append(HatchRef)\n\t\t\t\tip += 1\n\n\t\t\tTransactionManager.Instance.EnsureInTransaction(doc)\n\t\t\t#create dimension to use it's references and length\n\t\t\t#this uses 2 references to the hatch pattern for each orientation\n\t\t\t_dimension = doc.Create.NewDimension(doc.ActiveView, Line.CreateBound(XYZ.Zero, XYZ(10, 0, 0)), refAr)\n\t\t\tElementTransformUtils.MoveElement(doc, _dimension.Id, XYZ(.1, 0, 0))\n\t\t\tr1 = _dimension.References.get_Item(0)\n\t\t\tdirection =_dimension.Curve.Direction\n\t\t\thatchDirection = direction.CrossProduct(extFace.FaceNormal).Normalize()\n\t\t\t#move back by half because origin is always centered on the dimension\n\t\t\torigin = _dimension.Origin.Subtract(direction.Multiply(_dimension.Value/2))\n\t\t\t#create reference plane at the pattern location\n\t\t\tpl = doc.Create.NewReferencePlane(origin.Add(hatchDirection.Multiply(3)),origin,extFace.FaceNormal.Multiply(3),doc.ActiveView)\n\t\t\t#generate a unique name for the reference plane using it's Guid\n\t\t\t#pl.Name = str.Format(\"{0}_{1}\",\"ref\", Guid.NewGuid())\n\t\t\tTransactionManager.Instance.TransactionTaskDone()\n\n\t\t\tstableRef = str.Format(\"{0}:0:{1}\",pl.UniqueId,\"SURFACE\")\n\t\t\tref2Plane = Reference.ParseFromStableRepresentation(doc,stableRef)\n\t\n\t\t\tTransactionManager.Instance.ForceCloseTransaction()\n\t\t\tTransactionManager.Instance.EnsureInTransaction(doc)\n\t\t\tdoc.Create.NewAlignment(doc.ActiveView,ref2Plane,r1)\n\t\t\ttranslation = origin.Subtract(corner)\n\t\t\tElementTransformUtils.MoveElement(doc,pl.Id,-translation)\n\t\t\t\n\t\t\t#we don't need the dimensions or reference planes any more\n\t\t\tdoc.Delete(_dimension.Id)\n\t\t\tdoc.Delete(pl.Id)\n\t\t\tTransactionManager.Instance.TransactionTaskDone()\n\nOUT=\"Success\"",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "fcbccb9ff3784be7b4145f7997f9fe1f",
+      "Inputs": [
+        {
+          "Id": "3db8729eb0b4459381e10085210cea5c",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3022fab62ec741d79a0a5e29d060ca17",
+          "Name": "OUT",
+          "Description": "Résultat du script Python",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Exécute un script Python intégré."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d056f5ddbf444de2a14d865959bbc25e",
+      "End": "97e48ac8b9e74a9aa1b8849625e13199",
+      "Id": "370c350bf2d74dd6bbfa0ceff2b3c0a8"
+    },
+    {
+      "Start": "58305d93344d417e8d4d316c2b0b3033",
+      "End": "3db8729eb0b4459381e10085210cea5c",
+      "Id": "5a3f997140284148b6353e83001e8871"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.10.1.3976",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Aperçu en arrière-plan",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "b149db3c43c1416fb476940143213e96",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 340.0,
+        "Y": 455.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "All Elements of Category",
+        "Id": "98a42749c41d48568b1407034c6d94ae",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 538.0,
+        "Y": 456.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Python Script",
+        "Id": "fcbccb9ff3784be7b4145f7997f9fe1f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 739.251704870923,
+        "Y": 456.2
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

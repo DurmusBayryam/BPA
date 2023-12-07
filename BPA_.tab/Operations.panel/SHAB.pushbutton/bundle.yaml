@@ -1,0 +1,7 @@
+title: SHAB
+tooltip: Vous pouvez calcules les surfaces facilement les touts logements.
+author: "Durmus BAYRYAM"
+references:
+engine:
+  clean: true
+  automate: false
