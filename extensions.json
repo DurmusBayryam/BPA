@@ -18,7 +18,7 @@
             "builtin": "False",
             "type": "extension",
             "rocket_mode_compatible": "True",
-            "name": "BPA",
+            "name": "BPA_",
             "description": "BPA Architecture Plug-in 2024",
             "author": "Durmus BAYRYAM",
             "author_profile": "https://bpa.archi/",
