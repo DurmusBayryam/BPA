@@ -1,7 +1,0 @@
-title: Placard
-tooltip: Vous pouvez cree un nouveau placard le taille de largeur de la mur! 
-author: "Durmus BAYRYAM"
-references:
-engine:
-  clean: true
-  automate: false

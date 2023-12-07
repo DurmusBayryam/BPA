@@ -1,7 +1,0 @@
-title: Export
-tooltip: Vous pouvez exporter a Excel votre tableau Nomenclature 
-author: "Durmus BAYRYAM"
-references:
-engine:
-  clean: true
-  automate: false

@@ -1,9 +1,0 @@
-title: Prépare
-tooltip: Vous pouvez préparer votre plans pour PDV(Localisation-Synoptique-Plan).
-author: "Durmus BAYRYAM"
-references:
-engine:
-  clean: true
-  automate: false
-  full_frame: true
-  persistent: true
