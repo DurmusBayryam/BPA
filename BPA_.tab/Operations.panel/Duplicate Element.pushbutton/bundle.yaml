@@ -1,0 +1,7 @@
+title: Duplicate Element
+tooltip: Vous pouvez duplicater les éléments à partir d'un bas élément.
+author: "Durmus BAYRYAM"
+references:
+engine:
+  clean: true
+  automate: false
