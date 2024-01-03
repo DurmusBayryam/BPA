@@ -4591,8 +4591,8 @@
     },
     {
       "ConcreteType": "Orchid.E.RevitProject.Views.ViewFamilyType, OrchidRE",
-      "SelectedIndex": 0,
-      "SelectedString": "Détail",
+      "SelectedIndex": 11,
+      "SelectedString": "Plan Etage",
       "Id": "ab7fae3011fc435081d77c6e075bde85",
       "NodeType": "ExtensionNode",
       "Inputs": [],
@@ -5765,16 +5765,9 @@
       "Nodes": [
         "69ba9bb36f65496ab9e675c46ebd5e36"
       ]
-    },
-    {
-      "Name": "BPA.png",
-      "ReferenceType": "External",
-      "Nodes": [
-        "62681d3f79644f2b9257c0997644383a"
-      ]
     }
   ],
-  "Thumbnail": null,
+  "Thumbnail": "",
   "GraphDocumentationURL": null,
   "ExtensionWorkspaceData": [
     {
@@ -6278,8 +6271,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 8832.4718488064282,
-        "Y": 1573.3888187898413
+        "X": 8837.308477168086,
+        "Y": 1580.6437613323276
       },
       {
         "Id": "845f3856992046d3990f7f95072ff903",
@@ -6498,8 +6491,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": false,
-        "X": 8830.00680076302,
-        "Y": 1444.7032909828913
+        "X": 8837.2617433055057,
+        "Y": 1415.683520812946
       },
       {
         "Id": "877cb25900034ef3bf0a0437c706e6a2",
@@ -6678,8 +6671,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -260.00551120444516,
-        "Y": -361.20327515500651
+        "X": -256.717438458242,
+        "Y": -487.79407588382492
       },
       {
         "Id": "7334320587a64c9f902bd84bc5a6a7d4",
@@ -6688,8 +6681,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -1359.7152202250859,
-        "Y": -198.61995080801682
+        "X": -1356.4271474788827,
+        "Y": -325.21075153683523
       },
       {
         "Id": "eab4ec5d64bf41af8a69f2cbea17e812",
@@ -6698,8 +6691,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -693.93477091378668,
-        "Y": -361.95777674706017
+        "X": -690.64669816758351,
+        "Y": -488.54857747587857
       },
       {
         "Id": "0d3ebfe417c140c2a8225223d028dfb7",
@@ -6708,8 +6701,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -1371.3257644504429,
-        "Y": -326.34739129560256
+        "X": -1368.0376917042397,
+        "Y": -452.93819202442097
       },
       {
         "Id": "62681d3f79644f2b9257c0997644383a",
@@ -6718,8 +6711,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -1361.5263669504409,
-        "Y": -473.26119601307454
+        "X": -1358.2382942042377,
+        "Y": -599.85199674189289
       },
       {
         "Id": "de94a19211d94adb9d610519eb067507",
@@ -6728,8 +6721,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -1198.2362162444795,
-        "Y": -483.33143263705375
+        "X": -1194.9481434982763,
+        "Y": -609.92223336587222
       },
       {
         "Id": "c7ed2a2fae26484e9b74a1c55b28e133",
@@ -6738,8 +6731,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -1009.1454948111925,
-        "Y": -476.07069257479162
+        "X": -1005.8574220649894,
+        "Y": -602.66149330361009
       },
       {
         "Id": "ee5715723afe4c4b8bf6b9e59d6bc983",
@@ -6748,8 +6741,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -1088.7489978339786,
-        "Y": -213.07418750657541
+        "X": -1085.4609250877754,
+        "Y": -339.66498823539382
       },
       {
         "Id": "b24e2f668aa547cb97234b5018ed1eca",
@@ -6758,8 +6751,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -77.852235435230114,
-        "Y": -359.363345912584
+        "X": -74.564162689026944,
+        "Y": -485.95414664140242
       },
       {
         "Id": "a2541fd7f5ea417196b345b0e00ca81a",
@@ -6818,8 +6811,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -507.77435052211331,
-        "Y": 322.00520797531181
+        "X": -506.1096809421324,
+        "Y": 345.31058209504636
       },
       {
         "Id": "305941c61ce94eac9ec730141c41deb4",
@@ -6828,8 +6821,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -762.89071771956287,
-        "Y": 322.086048104694
+        "X": -759.56137855960083,
+        "Y": 343.7267526444474
       },
       {
         "Id": "20b7adf83514434fb1a74694de153cdf",
@@ -6928,8 +6921,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -1357.129022224759,
-        "Y": -51.853119384156116
+        "X": -1353.8409494785558,
+        "Y": -178.44392011297452
       },
       {
         "Id": "948d05b4e2c84c32967b7de294218d33",
@@ -6938,8 +6931,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 276.77725699696452,
-        "Y": -364.019245272145
+        "X": 280.06532974316769,
+        "Y": -490.61004600096339
       },
       {
         "Id": "aef782c3cc324626b719cd174ea3791a",
@@ -7107,7 +7100,7 @@
         "FontSize": 36.0,
         "GroupStyleId": "00000000-0000-0000-0000-000000000000",
         "InitialTop": 652.46812846957584,
-        "InitialHeight": 1081.5074208171241,
+        "InitialHeight": 1206.8133325241165,
         "TextblockHeight": 63.0,
         "Background": "#FF848484"
       },
@@ -7169,7 +7162,7 @@
         "FontSize": 36.0,
         "GroupStyleId": "00000000-0000-0000-0000-000000000000",
         "InitialTop": 844.0116439697274,
-        "InitialHeight": 705.83965128268824,
+        "InitialHeight": 1009.515789652311,
         "TextblockHeight": 63.0,
         "Background": "#FF848484"
       },
@@ -7194,14 +7187,14 @@
           "5adad5cb25174e45b06c9efe2a7b95f7"
         ],
         "HasNestedGroups": false,
-        "Left": 8820.00680076302,
-        "Top": 1371.7032909828913,
-        "Width": 3006.5157674913753,
-        "Height": 540.2850031093476,
+        "Left": 8827.2617433055057,
+        "Top": 1342.683520812946,
+        "Width": 2999.2608249488894,
+        "Height": 569.30477327929293,
         "FontSize": 36.0,
         "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 1444.7032909828913,
-        "InitialHeight": 478.67985580814866,
+        "InitialTop": 1415.683520812946,
+        "InitialHeight": 480.2850031093476,
         "TextblockHeight": 63.0,
         "Background": "#FFFFAA45"
       },
@@ -7228,7 +7221,7 @@
         "FontSize": 36.0,
         "GroupStyleId": "00000000-0000-0000-0000-000000000000",
         "InitialTop": 779.26543685628258,
-        "InitialHeight": 855.94444493267861,
+        "InitialHeight": 1102.9799918489032,
         "TextblockHeight": 63.0,
         "Background": "#FFFF7BAC"
       },
@@ -7265,20 +7258,20 @@
           "222bd4f84e5449eaab97bbf4dadeefa5"
         ],
         "HasNestedGroups": false,
-        "Left": -1381.3257644504429,
-        "Top": -556.33143263705369,
-        "Width": 3265.9285496990469,
-        "Height": 1093.6872823319327,
+        "Left": -1378.0376917042397,
+        "Top": -682.92223336587222,
+        "Width": 3262.6404769528435,
+        "Height": 1220.2780830607512,
         "FontSize": 36.0,
         "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": -483.33143263705375,
-        "InitialHeight": 927.45469540418389,
+        "InitialTop": -609.92223336587222,
+        "InitialHeight": 1009.1362437174085,
         "TextblockHeight": 63.0,
         "Background": "#FFFF7BAC"
       }
     ],
-    "X": -1219.4040387707837,
-    "Y": 339.58155982537824,
-    "Zoom": 0.28135919012854732
+    "X": 1197.5208118715627,
+    "Y": 531.68821222665224,
+    "Zoom": 0.608259048498703
   }
 }
