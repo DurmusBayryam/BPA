@@ -1,7 +1,0 @@
-title: Ajouter
-tooltip: Vous pouvez ajouter vous fichiers Revit automatiquement!
-author: "Durmus BAYRYAM"
-references:
-engine:
-  clean: true
-  automate: false
