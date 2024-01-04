@@ -496,6 +496,63 @@
       ],
       "Replication": "Longest",
       "Description": "Sets the workset of a given element"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "Id": "e633a3ba655a43e1948f407ccdc40907",
+      "NodeType": "CodeBlockNode",
+      "Inputs": [
+        {
+          "Id": "a02ce1687acd4e7fb1927db9d9f0aa04",
+          "Name": "x",
+          "Description": "x",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f7fa1a4bd0c04734a7348cd9a1945761",
+          "Name": "e",
+          "Description": "e",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a6acd1640a064169a4ee818ca206de43",
+          "Name": "",
+          "Description": "a",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b3cdd28381f04794ad4b0b127210bfec",
+          "Name": "",
+          "Description": "b",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "88089b5dac944486af74df991be73384",
+          "Name": "",
+          "Description": "c",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly",
+      "Code": "a=\tx==null ? true:false;\nb=\tDSCore.List.FilterByBoolMask(e,a)[\"out\"];\nc=\tDSCore.List.FilterByBoolMask(x,a)[\"out\"];"
     }
   ],
   "Connectors": [
@@ -507,8 +564,8 @@
     },
     {
       "Start": "abf6d667a9c84f32849e2fb2738a4509",
-      "End": "7704c495408848dc8bde9a76f3efaacc",
-      "Id": "6c539f60096e4d91b5ff8bb343a14b4e",
+      "End": "f7fa1a4bd0c04734a7348cd9a1945761",
+      "Id": "2741b474d08d43fe871a7b66e24bd4c6",
       "IsHidden": "False"
     },
     {
@@ -573,8 +630,20 @@
     },
     {
       "Start": "9b371f3adfc54d1f99a6acd9f932e125",
+      "End": "a02ce1687acd4e7fb1927db9d9f0aa04",
+      "Id": "3b37ae6ac0ae47848409dfc694836cd7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b3cdd28381f04794ad4b0b127210bfec",
+      "End": "7704c495408848dc8bde9a76f3efaacc",
+      "Id": "8d4f282254b04b828e0af4d6f78c95a1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "88089b5dac944486af74df991be73384",
       "End": "c5b3697b25b848cbbb71994ed8f54b77",
-      "Id": "74088ad290bd4a0ea2d1632db9d1ea40",
+      "Id": "395bc649e14c4a34ba87473ab0e73141",
       "IsHidden": "False"
     }
   ],
@@ -764,8 +833,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1216.519936961552,
-        "Y": 165.8151029162207
+        "X": 1218.1685222272431,
+        "Y": 169.11227344760314
       },
       {
         "Id": "9edae02be218496db38946a052232761",
@@ -774,8 +843,18 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1447.3343571522259,
-        "Y": 167.08034303921579
+        "X": 1962.8824989793152,
+        "Y": 344.56623302482865
+      },
+      {
+        "Id": "e633a3ba655a43e1948f407ccdc40907",
+        "Name": "Code Block",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1468.1570572835021,
+        "Y": 343.58589103798465
       }
     ],
     "Annotations": [
@@ -805,13 +884,13 @@
         "FontSize": 36.0,
         "GroupStyleId": "00000000-0000-0000-0000-000000000000",
         "InitialTop": 23.456836285542295,
-        "InitialHeight": 696.20356224477,
+        "InitialHeight": 679.0912500753667,
         "TextblockHeight": 63.0,
         "Background": "#FFFF7BAC"
       }
     ],
-    "X": 671.678037189971,
-    "Y": 512.08805986632251,
-    "Zoom": 0.49327555867287409
+    "X": 296.80480912975531,
+    "Y": 297.01697069817914,
+    "Zoom": 0.86314762576532567
   }
 }
