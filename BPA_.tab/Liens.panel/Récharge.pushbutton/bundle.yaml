@@ -1,7 +1,0 @@
-title: Recharge
-tooltip: Vous pouvez recharger vos liens automatiquement.
-author: "Durmus BAYRYAM"
-references:
-engine:
-  clean: true
-  automate: false
