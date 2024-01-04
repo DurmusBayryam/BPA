@@ -452,13 +452,70 @@
       ],
       "Replication": "Auto",
       "Description": "Create filepath input for UI.MultipleInputForm ++ . Check out www.data-shapes.net for more infos !"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "Id": "fbc1f4a598014b3c928d58182e038b5e",
+      "NodeType": "CodeBlockNode",
+      "Inputs": [
+        {
+          "Id": "166a193822ec4e5f9e32b8a4ffdc6f64",
+          "Name": "x",
+          "Description": "x",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "205f0c73815d471da6e8c0a23801c220",
+          "Name": "e",
+          "Description": "e",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dbccdadfdb1047f187d677c315da437d",
+          "Name": "",
+          "Description": "a",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "712c81b0e11943f7b21ea266868d2541",
+          "Name": "",
+          "Description": "b",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b1190985649745c5a706019e89f93f1c",
+          "Name": "",
+          "Description": "c",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly",
+      "Code": "a=\tx==\"FilePath\" ? true:false;\nb=\tDSCore.List.FilterByBoolMask(e,a)[\"out\"];\nc=\tDSCore.List.FilterByBoolMask(x,a)[\"out\"];"
     }
   ],
   "Connectors": [
     {
       "Start": "4f994904c8db4571aac87057e624d40f",
-      "End": "81ef28c8cfef40bba39e9169609a6f72",
-      "Id": "82fd69f7fd7548eba06a6557c18f25cf",
+      "End": "166a193822ec4e5f9e32b8a4ffdc6f64",
+      "Id": "2efa836e74b844f7aeae32caf8307f50",
       "IsHidden": "False"
     },
     {
@@ -517,14 +574,26 @@
     },
     {
       "Start": "dca5a2334a7a4b52be51fde393d2fba4",
-      "End": "09d2fe67d03443e9bb7f1864c0f23bc9",
-      "Id": "165daf34ad5c4579a44b084ccacf188d",
+      "End": "205f0c73815d471da6e8c0a23801c220",
+      "Id": "3d0a13c9606842829d0418abcaf699fb",
       "IsHidden": "False"
     },
     {
       "Start": "d99db93833ea4f80a8d9b8fee79db735",
       "End": "d9d27484e3f84f11bdd68cc38cf2cbfb",
       "Id": "4ab09f9fb0874a2caabb5c6cb1c55893",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "712c81b0e11943f7b21ea266868d2541",
+      "End": "09d2fe67d03443e9bb7f1864c0f23bc9",
+      "Id": "6529c5bca9aa4213be56e3cf7c226bf3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b1190985649745c5a706019e89f93f1c",
+      "End": "81ef28c8cfef40bba39e9169609a6f72",
+      "Id": "a746f608d2f74a78847048a01ffa8673",
       "IsHidden": "False"
     }
   ],
@@ -559,6 +628,13 @@
       "ReferenceType": "Package",
       "Nodes": [
         "5c55a38839854e6091390815b2d83d77"
+      ]
+    },
+    {
+      "Name": "BPA.png",
+      "ReferenceType": "External",
+      "Nodes": [
+        "1c4d0dd668b3483b9c47ae68ff189c74"
       ]
     }
   ],
@@ -616,8 +692,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1538.4865396411467,
-        "Y": 319.25233483516706
+        "X": 2064.8262790431636,
+        "Y": 353.552792881534
       },
       {
         "Id": "fa4c897190604601b231532cbfc64c1f",
@@ -708,6 +784,16 @@
         "ShowGeometry": true,
         "X": -61.207693257965616,
         "Y": 420.09488556688495
+      },
+      {
+        "Id": "fbc1f4a598014b3c928d58182e038b5e",
+        "Name": "Code Block",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1538.9125360665448,
+        "Y": 344.684558709562
       }
     ],
     "Annotations": [
@@ -742,8 +828,8 @@
         "Background": "#FFFF7BAC"
       }
     ],
-    "X": 949.899103619731,
-    "Y": 233.93233883352849,
-    "Zoom": 0.75227829102354515
+    "X": -560.7100731346311,
+    "Y": 50.311911711744415,
+    "Zoom": 1.1179878830423842
   }
 }
