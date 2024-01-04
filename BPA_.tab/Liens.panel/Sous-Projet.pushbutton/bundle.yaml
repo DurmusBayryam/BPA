@@ -1,0 +1,7 @@
+title: Sous-Projet
+tooltip: Vous pouvez organiser les sous-projets en fonction de vos liens!
+author: "Durmus BAYRYAM"
+references:
+engine:
+  clean: true
+  automate: false

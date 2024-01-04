@@ -1,0 +1,7 @@
+title: Décharger
+tooltip: Vous pouvez décharger vos liens automatiquement.
+author: "Durmus BAYRYAM"
+references:
+engine:
+  clean: true
+  automate: false

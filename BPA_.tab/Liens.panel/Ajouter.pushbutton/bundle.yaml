@@ -1,0 +1,7 @@
+title: Ajouter
+tooltip: Vous pouvez ajouter vos fichiers automatiquement!
+author: "Durmus BAYRYAM"
+references:
+engine:
+  clean: true
+  automate: false
