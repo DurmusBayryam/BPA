@@ -1,0 +1,158 @@
+{
+  "Uuid": "ed5e8198-b916-4217-a2a4-7483fd122bdf",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Charte Graphique_script",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "import sys\r\nimport clr\r\nimport System\r\n\r\nclr.AddReference(\"Microsoft.Office.Interop.Word\")\r\nimport Microsoft.Office.Interop.Word as Word\r\n\r\nclr.AddReference(\"System.Runtime.InteropServices\")\r\nimport System.Runtime.InteropServices\r\n\r\n\r\nfilePath = IN[0]\r\n\r\ndef openfile(source_filename):\r\n    word_application = Word.ApplicationClass()\r\n    word_application.visible = True\r\n    document = word_application.Documents.Open(source_filename)\r\n    return document\r\n\r\nword_application = Word.ApplicationClass()\r\nword_application.Quit()\r\nword_application = None\r\n\r\nnewDoc = openfile(filePath)\r\n\r\nOUT = newDoc\r\n",
+      "Engine": "IronPython2",
+      "EngineName": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "eade1369020144c4972507007c16f08a",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "ceeb7ad27d51456ba68592084ac14547",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0198c27340cb43df9dff913e840421ef",
+          "Name": "OUT",
+          "Description": "Résultat du script Python",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Exécute un script Python intégré."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "87f5cb91ace24fbd8329d19c77112564",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b4b2b1e82c7f4b8bb6e70ff4fa327d07",
+          "Name": "",
+          "Description": "Chemin de fichier",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permet de sélectionner un fichier dans le système et renvoie son chemin",
+      "HintPath": "Z:\\0-AGENCE\\08-AUTOCADREVIT\\00-BIBLIO\\08-STANDARD\\BPA-Charte Graphique & Methodologique.docx",
+      "InputValue": "Z:\\0-AGENCE\\08-AUTOCADREVIT\\00-BIBLIO\\08-STANDARD\\BPA-Charte Graphique & Methodologique.docx"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "b4b2b1e82c7f4b8bb6e70ff4fa327d07",
+      "End": "ceeb7ad27d51456ba68592084ac14547",
+      "Id": "9f5d5dc6bfda4726a08996738eb4c249",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "BPA-Charte Graphique & Methodologique.docx",
+      "ReferenceType": "External",
+      "Nodes": [
+        "87f5cb91ace24fbd8329d19c77112564"
+      ]
+    }
+  ],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Propriétés",
+      "Version": "2.19",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "Aucun",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.19.3.6394",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Aperçu en arrière-plan",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "eade1369020144c4972507007c16f08a",
+        "Name": "Python Script",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 380.31646716603927,
+        "Y": 245.01174580051702
+      },
+      {
+        "Id": "87f5cb91ace24fbd8329d19c77112564",
+        "Name": "File Path",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -322.45018076499071,
+        "Y": 244.45018076499071
+      }
+    ],
+    "Annotations": [],
+    "X": 617.2652776341356,
+    "Y": 320.99803278986769,
+    "Zoom": 0.8679775076490156
+  }
+}

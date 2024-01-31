@@ -1,4 +1,5 @@
 layout:
+    - Standart
     - Excel
     - Filtre
     - Carnet
@@ -7,3 +8,4 @@ layout:
     - Cotation
     - Répérage
     - Liens
+    

@@ -1,0 +1,150 @@
+{
+  "Uuid": "a2fd4256-518d-4110-9eda-5b25f27281cd",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Charte Plug-in_script",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "import sys\r\nimport clr\r\nimport System\r\n\r\nclr.AddReference(\"Microsoft.Office.Interop.Word\")\r\nimport Microsoft.Office.Interop.Word as Word\r\n\r\nclr.AddReference(\"System.Runtime.InteropServices\")\r\nimport System.Runtime.InteropServices\r\n\r\n\r\nfilePath = IN[0]\r\n\r\ndef openfile(source_filename):\r\n    word_application = Word.ApplicationClass()\r\n    word_application.visible = True\r\n    document = word_application.Documents.Open(source_filename)\r\n    return document\r\n\r\nword_application = Word.ApplicationClass()\r\nword_application.Quit()\r\nword_application = None\r\n\r\nnewDoc = openfile(filePath)\r\n\r\nOUT = newDoc\r\n",
+      "Engine": "IronPython2",
+      "EngineName": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "854b51bda97b4baab54673a8a240797d",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "945530f0e9024fcca02112b1aab59435",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8bc56eed4f3e402cb2c1ac9dd50ab631",
+          "Name": "OUT",
+          "Description": "Résultat du script Python",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Exécute un script Python intégré."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "41ac19048a6f420a9fb4d32f0664d5b0",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5e07a62408c046d2b80ab565ce41ff4f",
+          "Name": "",
+          "Description": "Chemin de fichier",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permet de sélectionner un fichier dans le système et renvoie son chemin",
+      "HintPath": "Z:\\0-AGENCE\\08-AUTOCADREVIT\\00-BIBLIO\\08-STANDARD\\BPA-BPA Plug-in_Guide.docx",
+      "InputValue": "..\\..\\..\\..\\..\\..\\..\\08-STANDARD\\BPA-BPA Plug-in_Guide.docx"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "5e07a62408c046d2b80ab565ce41ff4f",
+      "End": "945530f0e9024fcca02112b1aab59435",
+      "Id": "70f48a9a449a44ccac4cc744f950f2f6",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Propriétés",
+      "Version": "2.19",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "Aucun",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.19.3.6394",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Aperçu en arrière-plan",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "854b51bda97b4baab54673a8a240797d",
+        "Name": "Python Script",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 380.31646716603927,
+        "Y": 245.01174580051702
+      },
+      {
+        "Id": "41ac19048a6f420a9fb4d32f0664d5b0",
+        "Name": "File Path",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -322.45018076499071,
+        "Y": 244.45018076499071
+      }
+    ],
+    "Annotations": [],
+    "X": 617.2652776341356,
+    "Y": 320.99803278986769,
+    "Zoom": 0.8679775076490156
+  }
+}
