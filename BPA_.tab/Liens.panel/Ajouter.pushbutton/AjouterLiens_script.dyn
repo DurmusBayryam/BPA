@@ -2,7 +2,7 @@
   "Uuid": "84d0cadd-ec64-439d-9780-aa2a59d8c60b",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "AjouterLiens",
+  "Name": "AjouterLiens_script",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -11,7 +11,7 @@
   "Nodes": [
     {
       "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
-      "Code": "import sys\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\nclr.AddReference('System.Drawing')\r\nclr.AddReference('System.Windows.Forms')\r\nimport System.Drawing\r\nimport System.Windows.Forms\r\n\r\nfrom System.Drawing import *\r\nfrom System.Windows.Forms import *\r\n\r\nclr.AddReference('System.Data')\r\nfrom System.Data import *\r\nfrom System import Array\r\n\r\nclass Form24(Form):\r\n    def __init__(self):\r\n        self._tableData = DataTable(\"BPA Architecture\")\r\n        self._tableData.Columns.Add(\"Lien\", System.String)\r\n        self._tableData.Columns.Add(\"Chemin\", System.Object)\r\n        self.out = []\r\n        self.InitializeComponent()\r\n\r\n    def InitializeComponent(self):\r\n        self._button1 = System.Windows.Forms.Button()\r\n        self._buttonFilePath = System.Windows.Forms.Button()\r\n        self._dataGridView = System.Windows.Forms.DataGridView()\r\n        self._buttonDeleteFile = System.Windows.Forms.Button()\r\n        self._comboBoxPosition = DataGridViewComboBoxColumn()\r\n\r\n        # Diğer kontrol elemanlarını ekle\r\n        self._button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right\r\n        self._button1.Location = System.Drawing.Point(422, 320)\r\n        self._button1.Name = \"button1\"\r\n        self._button1.Size = System.Drawing.Size(75, 27)\r\n        self._button1.TabIndex = 2\r\n        self._button1.Text = \"Terminer\"\r\n        self._button1.UseVisualStyleBackColor = True\r\n        self._button1.Click += self.Button1Click\r\n\r\n        self._buttonFilePath.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left\r\n        self._buttonFilePath.Location = System.Drawing.Point(12, 320)\r\n        self._buttonFilePath.Name = \"buttonFilePath\"\r\n        self._buttonFilePath.Size = System.Drawing.Size(104, 27)\r\n        self._buttonFilePath.TabIndex = 4\r\n        self._buttonFilePath.Text = \"Chemin Depuis\"\r\n        self._buttonFilePath.UseVisualStyleBackColor = True\r\n        self._buttonFilePath.Click += self.ButtonFilePathClick\r\n\r\n        self._buttonDeleteFile.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left\r\n        self._buttonDeleteFile.Location = System.Drawing.Point(122, 320)\r\n        self._buttonDeleteFile.Name = \"buttonDeleteFile\"\r\n        self._buttonDeleteFile.Size = System.Drawing.Size(104, 27)\r\n        self._buttonDeleteFile.TabIndex = 5\r\n        self._buttonDeleteFile.Text = \"Supprimer\"\r\n        self._buttonDeleteFile.UseVisualStyleBackColor = True\r\n        self._buttonDeleteFile.Click += self.ButtonDeleteFileClick\r\n\r\n\r\n        self._dataGridView.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right\r\n        self._dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize\r\n        self._dataGridView.Location = System.Drawing.Point(12, 30)\r\n        self._dataGridView.Name = \"dataGridView1\"\r\n        self._dataGridView.Size = System.Drawing.Size(480, 244)\r\n        self._dataGridView.TabIndex = 6\r\n        self._dataGridView.Columns.Add(self._comboBoxPosition) \r\n        self._comboBoxPosition.HeaderText = \"Position\"\r\n        options = Array[object]([\"Point de Base du projet\", \"A l'émplacement partagé\"])\r\n        self._comboBoxPosition.Items.AddRange(options)  \r\n        self._comboBoxPosition.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox\r\n        self._dataGridView.EditingControlShowing += self.DataGridViewEditingControlShowing \r\n\r\n        self.ClientSize = System.Drawing.Size(510, 360)\r\n        self.Controls.Add(self._buttonDeleteFile)\r\n        self.Controls.Add(self._dataGridView)\r\n        self.Controls.Add(self._buttonFilePath)\r\n        self.Controls.Add(self._button1)\r\n        self.Name = \"Durmus Bayryam\"\r\n        self.Text = \"BPA Architecture\"\r\n\r\n    def Button1Click(self, sender, e):\r\n        self.Close()\r\n\r\n    def ButtonFilePathClick(self, sender, e):\r\n        openFileDialog = System.Windows.Forms.OpenFileDialog()\r\n        openFileDialog.Filter = \"All Files|*.*\"\r\n        openFileDialog.Title = \"Chemin Depuis\"\r\n        \r\n        result = openFileDialog.ShowDialog()\r\n        selected_file = openFileDialog.FileName\r\n        self.AddFileToDataTable(selected_file)\r\n\r\n    def AddFileToDataTable(self, file_path):\r\n        new_row = self._tableData.NewRow()\r\n        new_row[\"Lien\"] = \"Lien\"\r\n        new_row[\"Chemin\"] = file_path\r\n        self._tableData.Rows.Add(new_row)\r\n        self.RefreshDataGridView()\r\n\r\n    def RefreshDataGridView(self):\r\n        self._dataGridView.DataSource = None\r\n        self._dataGridView.DataSource = self._tableData\r\n\r\n    def DataGridViewEditingControlShowing(self, sender, e):\r\n        if isinstance(e.Control, ComboBox):\r\n            comboBox = e.Control\r\n            comboBox.DropDownStyle = ComboBoxStyle.DropDown\r\n            comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend\r\n            comboBox.AutoCompleteSource = AutoCompleteSource.ListItems\r\n            options = Array[object]([\"Point de Base du projet\", \"A l'émplacement partagé\"])\r\n            comboBox.DataSource = options\r\n\r\n\r\n    def ButtonDeleteFileClick(self, sender, e):\r\n        selected_rows = self._dataGridView.SelectedRows\r\n        if selected_rows.Count > 0:\r\n            index = selected_rows[0].Index\r\n            self._tableData.Rows.RemoveAt(index)\r\n            self.RefreshDataGridView()\r\n        else:\r\n            MessageBox.Show(\"Sélectionnez le fichier que vous souhaitez supprimer.\", \"HEY!\", MessageBoxButtons.OK, MessageBoxIcon.Warning)\r\n\r\nobjForm = Form24()\r\nobjForm.ShowDialog()\r\n\r\nposition = []\r\nresult = []\r\nfor row in objForm._tableData.Rows:\r\n    chemin = row[\"Chemin\"]\r\n    result.append(chemin)\r\n    \r\nfor rowIndex in range(objForm._dataGridView.Rows.Count):\r\n    cell = objForm._dataGridView.Rows[rowIndex].Cells[\"\"]\r\n    if cell is not None and cell.Value is not None:\r\n        position.append(cell.Value)\r\n\r\nOUT = result, position\r\n",
+      "Code": "import sys\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\nclr.AddReference('System.Drawing')\r\nclr.AddReference('System.Windows.Forms')\r\nimport System.Drawing\r\nimport System.Windows.Forms\r\n\r\nfrom System.Drawing import *\r\nfrom System.Windows.Forms import *\r\n\r\nclr.AddReference('System.Data')\r\nfrom System.Data import *\r\nfrom System import Array\r\n\r\nclass Form24(Form):\r\n    def __init__(self):\r\n        self._tableData = DataTable(\"BPA Architecture\")\r\n        self._tableData.Columns.Add(\"Lien\", System.String)\r\n        self._tableData.Columns.Add(\"Chemin\", System.Object)\r\n        self.out = []\r\n        self.InitializeComponent()\r\n\r\n    def InitializeComponent(self):\r\n        self._button1 = System.Windows.Forms.Button()\r\n        self._buttonFilePath = System.Windows.Forms.Button()\r\n        self._dataGridView = System.Windows.Forms.DataGridView()\r\n        self._buttonDeleteFile = System.Windows.Forms.Button()\r\n        self._comboBoxPosition = DataGridViewComboBoxColumn()\r\n\r\n        # Diğer kontrol elemanlarını ekle\r\n        self._button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right\r\n        self._button1.Location = System.Drawing.Point(422, 320)\r\n        self._button1.Name = \"button1\"\r\n        self._button1.Size = System.Drawing.Size(75, 27)\r\n        self._button1.TabIndex = 2\r\n        self._button1.Text = \"Terminer\"\r\n        self._button1.UseVisualStyleBackColor = True\r\n        self._button1.Click += self.Button1Click\r\n\r\n        self._buttonFilePath.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left\r\n        self._buttonFilePath.Location = System.Drawing.Point(12, 320)\r\n        self._buttonFilePath.Name = \"buttonFilePath\"\r\n        self._buttonFilePath.Size = System.Drawing.Size(104, 27)\r\n        self._buttonFilePath.TabIndex = 4\r\n        self._buttonFilePath.Text = \"Chemin Depuis\"\r\n        self._buttonFilePath.UseVisualStyleBackColor = True\r\n        self._buttonFilePath.Click += self.ButtonFilePathClick\r\n\r\n        self._buttonDeleteFile.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left\r\n        self._buttonDeleteFile.Location = System.Drawing.Point(122, 320)\r\n        self._buttonDeleteFile.Name = \"buttonDeleteFile\"\r\n        self._buttonDeleteFile.Size = System.Drawing.Size(104, 27)\r\n        self._buttonDeleteFile.TabIndex = 5\r\n        self._buttonDeleteFile.Text = \"Supprimer\"\r\n        self._buttonDeleteFile.UseVisualStyleBackColor = True\r\n        self._buttonDeleteFile.Click += self.ButtonDeleteFileClick\r\n\r\n\r\n        self._dataGridView.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right\r\n        self._dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize\r\n        self._dataGridView.Location = System.Drawing.Point(12, 30)\r\n        self._dataGridView.Name = \"dataGridView1\"\r\n        self._dataGridView.Size = System.Drawing.Size(480, 244)\r\n        self._dataGridView.TabIndex = 6\r\n        self._dataGridView.Columns.Add(self._comboBoxPosition) \r\n        self._comboBoxPosition.HeaderText = \"Position\"\r\n        options = Array[object]([\"Point de Base du projet\", \"A l'émplacement partagé\",\"Origin Interne\"])\r\n        self._comboBoxPosition.Items.AddRange(options)  \r\n        self._comboBoxPosition.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox\r\n        self._dataGridView.EditingControlShowing += self.DataGridViewEditingControlShowing \r\n\r\n        self.ClientSize = System.Drawing.Size(510, 360)\r\n        self.Controls.Add(self._buttonDeleteFile)\r\n        self.Controls.Add(self._dataGridView)\r\n        self.Controls.Add(self._buttonFilePath)\r\n        self.Controls.Add(self._button1)\r\n        self.Name = \"Durmus Bayryam\"\r\n        self.Text = \"BPA Architecture\"\r\n\r\n    def Button1Click(self, sender, e):\r\n        self.Close()\r\n\r\n    def ButtonFilePathClick(self, sender, e):\r\n        openFileDialog = System.Windows.Forms.OpenFileDialog()\r\n        openFileDialog.Filter = \"All Files|*.*\"\r\n        openFileDialog.Title = \"Chemin Depuis\"\r\n        \r\n        result = openFileDialog.ShowDialog()\r\n        selected_file = openFileDialog.FileName\r\n        self.AddFileToDataTable(selected_file)\r\n\r\n    def AddFileToDataTable(self, file_path):\r\n        new_row = self._tableData.NewRow()\r\n        new_row[\"Lien\"] = \"Lien\"\r\n        new_row[\"Chemin\"] = file_path\r\n        self._tableData.Rows.Add(new_row)\r\n        self.RefreshDataGridView()\r\n\r\n    def RefreshDataGridView(self):\r\n        self._dataGridView.DataSource = None\r\n        self._dataGridView.DataSource = self._tableData\r\n\r\n    def DataGridViewEditingControlShowing(self, sender, e):\r\n        if isinstance(e.Control, ComboBox):\r\n            comboBox = e.Control\r\n            comboBox.DropDownStyle = ComboBoxStyle.DropDown\r\n            comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend\r\n            comboBox.AutoCompleteSource = AutoCompleteSource.ListItems\r\n            options = Array[object]([\"Point de Base du projet\", \"A l'émplacement partagé\",\"Origin Interne\"])\r\n            comboBox.DataSource = options\r\n\r\n\r\n    def ButtonDeleteFileClick(self, sender, e):\r\n        selected_rows = self._dataGridView.SelectedRows\r\n        if selected_rows.Count > 0:\r\n            index = selected_rows[0].Index\r\n            self._tableData.Rows.RemoveAt(index)\r\n            self.RefreshDataGridView()\r\n        else:\r\n            MessageBox.Show(\"Sélectionnez le fichier que vous souhaitez supprimer.\", \"HEY!\", MessageBoxButtons.OK, MessageBoxIcon.Warning)\r\n\r\nobjForm = Form24()\r\nobjForm.ShowDialog()\r\n\r\nposition = []\r\nresult = []\r\nfor row in objForm._tableData.Rows:\r\n    chemin = row[\"Chemin\"]\r\n    result.append(chemin)\r\n    \r\nfor rowIndex in range(objForm._dataGridView.Rows.Count):\r\n    cell = objForm._dataGridView.Rows[rowIndex].Cells[\"\"]\r\n    if cell is not None and cell.Value is not None:\r\n        position.append(cell.Value)\r\n\r\nOUT = result, position\r\n",
       "Engine": "IronPython2",
       "EngineName": "IronPython2",
       "VariableInputPorts": true,
@@ -30,7 +30,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Runs an embedded Python script."
+      "Description": "Exécute un script Python intégré."
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
@@ -51,7 +51,7 @@
         {
           "Id": "893b3098e57a4f20a00b685d4ac7a8a2",
           "Name": "",
-          "Description": "Value of expression at line 1",
+          "Description": "Valeur de l'expression à la ligne 1",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -60,7 +60,7 @@
         {
           "Id": "055e94e2ca6d439fb843f96413cede43",
           "Name": "",
-          "Description": "Value of expression at line 2",
+          "Description": "Valeur de l'expression à la ligne 2",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -68,7 +68,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly",
+      "Description": "Permet de créer le code DesignScript directement",
       "Code": "x[0];\nx[1];"
     },
     {
@@ -129,7 +129,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Runs an embedded Python script."
+      "Description": "Exécute un script Python intégré."
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
@@ -158,7 +158,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly",
+      "Description": "Permet de créer le code DesignScript directement",
       "Code": "/*Input the worksets the links will be placed on.\nIf no workset is placed here, the links will be placed on current workset.*/\nWorksets_optional: var[]..[] = None;"
     },
     {
@@ -178,7 +178,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly",
+      "Description": "Permet de créer le code DesignScript directement",
       "Code": "/*Input a string of character (or a list of strings) contained in the name of the worksets to keep closed in links*/\nClosedWorksetNamesContain_optional: var[]..[] = null;"
     },
     {
@@ -198,7 +198,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly",
+      "Description": "Permet de créer le code DesignScript directement",
       "Code": "/*Input 'true' if you want to pin the links in place.*/\nPinLinks_optional: bool = false;"
     },
     {
@@ -259,7 +259,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Runs an embedded Python script."
+      "Description": "Exécute un script Python intégré."
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
@@ -267,7 +267,7 @@
       "NodeType": "CodeBlockNode",
       "Inputs": [
         {
-          "Id": "1099402e4429465998bc2105f5af6e67",
+          "Id": "e6afc457d9b14f989f4d564e7f72ec81",
           "Name": "x",
           "Description": "x",
           "UsingDefaultValue": false,
@@ -276,9 +276,9 @@
           "KeepListStructure": false
         },
         {
-          "Id": "365fc670134b470eb4794f05fb86b9fe",
-          "Name": "e",
-          "Description": "e",
+          "Id": "349da0464a0c4091bb818ddc372e3810",
+          "Name": "k",
+          "Description": "k",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -287,7 +287,7 @@
       ],
       "Outputs": [
         {
-          "Id": "ea649a6c526e464cbe61c17387b24106",
+          "Id": "7e0839741613447bb86d69c0d8a3d7d4",
           "Name": "",
           "Description": "a",
           "UsingDefaultValue": false,
@@ -296,18 +296,18 @@
           "KeepListStructure": false
         },
         {
-          "Id": "407c1540b4c742a4b6372e5cb0108249",
+          "Id": "5e379a73b469432facef2588d2a54c41",
           "Name": "",
-          "Description": "b",
+          "Description": "e",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         },
         {
-          "Id": "16336c5fc15d472badfea04ee09771fa",
+          "Id": "15c5374a777c498c82418416c93642a8",
           "Name": "",
-          "Description": "c",
+          "Description": "o",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -315,29 +315,49 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly",
-      "Code": "a=\tx==\"Point de Base du projet\" ? true:false;\nb=\tDSCore.List.FilterByBoolMask(e,a)[\"in\"];\nc=\tDSCore.List.FilterByBoolMask(e,a)[\"out\"];"
+      "Description": "Permet de créer le code DesignScript directement",
+      "Code": "a=\nx==\"Point de Base du projet\" ? k:0;\ne=\nx==\"A l'émplacement partagé\" ? k:0;\no=\nx==\"Origin Interne\"? k:0;"
     },
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
-      "FunctionSignature": "ecce77dc-1290-438e-a056-970b256fd553",
-      "FunctionType": "Graph",
-      "Id": "3acf0d9f98374929bc8e0b07b6ed3370",
-      "NodeType": "FunctionNode",
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "\n# part of the code originally created by Nicklas Østertgaard  nvo@bimshark.com / nvo@shl.fk  and/or Augusto Goncalves (AEC Devblog)\n# Workset management, loop, pin and site location settings by Jonathan ATGER (jonathan.atger@yahoo.fr)\n#bug correction by eric stimmel\n\nimport clr\n\nif IN[3] != None :\n\tclr.AddReference(\"System\")\n\tfrom System.Collections.Generic import List\n\n# Import ToDSType(bool) extension method\nclr.AddReference(\"RevitNodes\")\nimport Revit\nclr.ImportExtensions(Revit.Elements)\n\n# Import DocumentManager and TransactionManager\nclr.AddReference(\"RevitServices\")\nimport RevitServices\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nfrom System.Collections.Generic import *\n\n# Import RevitAPI\nclr.AddReference(\"RevitAPI\")\nimport Autodesk\nfrom Autodesk.Revit.DB import *\n\nimport sys\npyt_path = r'C:\\Program Files (x86)\\IronPython 2.7\\Lib'\nsys.path.append(pyt_path)\nimport System\n\ndoc = DocumentManager.Instance.CurrentDBDocument\n\n# Start Transaction\nTransactionManager.Instance.EnsureInTransaction(doc)\n\nif isinstance(IN[0], list) : in_links = IN[0] \nelse : in_links = [IN[0]]\n\nif isinstance(IN[1], list) : in_ws = IN[1] \nelse : in_ws = [IN[1]]\n\npinned = IN[2]\n\nif IN[3] != None :\n\tif isinstance(IN[3], list) : closedwsnames = IN[3] \n\telse : closedwsnames = [IN[3]]\nelse : closedwsnames = None\n\n# number of elements\ntry : numlinks = len(in_links)\nexcept : OUT = 'Input a filepath'\n\t\ntry : numworksets = len(in_ws)\nexcept : numworksets = 0\n\n#check list lengths\nif numlinks == numworksets : listlength = True\nelse : listlength = False\n\ndef linkmodel (fpath, doc, pin) :\n\t# Create the Revit Link Type\n\tmpu = ModelPathUtils.ConvertUserVisiblePathToModelPath(fpath)\n\t\n\tif closedwsnames == None :\n\t\tlnkoptions = RevitLinkOptions(\"\")\n\t\n\telse :\n\t\t#Workset configuration\n\t\ttry :\n\t\t\tworksets = WorksharingUtils.GetUserWorksetInfo(mpu)\n\t\t\tows = []\n\t\t\t\n\t\t\tfor ws in worksets :\n\t\t\t\tname = ws.Name\n\t\t\t\twsid = ws.Id\n\t\t\t\tclosed = []\t\n\t\t\t\tfor wsn in closedwsnames :\n\t\t\t\t\tif wsn in name :\n\t\t\t\t\t\tclosed.append(wsid)\n\t\t\t\tif wsid not in closed :\n\t\t\t\t\tows.append(wsid)\n\t\t\t\t\n\t\t\t#The workset Ids collected put in an IList format\t\t\t\n\t\t\topenwsids = List[WorksetId](ows)\t\t\t\n\t\t\t\n\t\t\t#Directly creating the RevitLinkOptions raises an error, so I create it once, and then extract the Worksetconfiguration to modify it. Had some issues with the Close() method of the WorksetConfiguration, Open() worked instead\n\t\t\twc = WorksetConfiguration(WorksetConfigurationOption.CloseAllWorksets)\n\t\t\tlnkoptions = RevitLinkOptions(False, wc)\n\t\t\twc2 = lnkoptions.GetWorksetConfiguration()\n\t\t\twc2.Open(openwsids)\n\t\t\tlnkoptions = RevitLinkOptions(False, wc2)\n\t\t\t\n\t\texcept :\n\t\t\tlnkoptions = RevitLinkOptions(\"\")\n\t\t\t\n\t\t\t\n\t#Create RevitLinkType\n\tloadedLnkType = RevitLinkType.Create(doc, mpu, lnkoptions)\n\t\n\t# Create the Revit Link Instance\n\tlnkInstance = RevitLinkInstance.Create(doc, loadedLnkType.ElementId)\n\tlnkInstance.MoveOriginToHostOrigin(True)\n\t\n\t#Pin link\n\tlnkInstance.Pinned = pin\n\n\treturn lnkInstance\n\ntry:\n\t# Number of worksets input and filepaths input are different\n\tif IN[1] and listlength == False :\n\t\tOUT = \"The number of worksets doesn't match the number of links\"\n\t\t\n\t\t\n\t# Multiple Worksets input\n\telif IN[1] and listlength == True  :\n\t\n\t\t#Get WorksetTable and current workset\n\t\twstable = doc.GetWorksetTable()\n\t\tactivewsid = wstable.GetActiveWorksetId()\n\t\t\n\t\t#Create list for output\n\t\tlinks = []\n\t\t\n\t\tfor fpath, ws in zip(in_links, in_ws) :\n\t\t\n\t\t\t# Get WorksetId\n\t\t\twssimpleid = ws.Id\n\t\t\twsid = WorksetId(wssimpleid)\n\t\t\t\t\n\t\t\t# Set the workset\n\t\t\tWorksetTable.SetActiveWorksetId(wstable, wsid)\n\t\t\t\n\t\t\t# Create the Revit Link Type and Link Instance\n\t\t\ta = linkmodel(fpath, doc, pinned)\n\t\t\t\n\t\t\t#add created link to output\n\t\t\tlinks.append(a)\n\t\t\t\t\t\t\t\n\t\t#reset current workset\t\n\t\tWorksetTable.SetActiveWorksetId(wstable, activewsid)\n\t\t\n\t\t#output\n\t\tOUT = links\t\n\n\t# No worksets input\n\telse :\n\t\tlinks = []\n\t\tfor fpath in in_links :\n\t\t\ta = linkmodel(fpath, doc, pinned)\n\t\t\tlinks.append(a)\n\t\tOUT=links\n\t\nexcept:\n    # if error accurs anywhere in the process catch it\n    import traceback\n    errorReport = traceback.format_exc()\n    OUT = errorReport \n\n# End Transaction\nTransactionManager.Instance.TransactionTaskDone()\n\n",
+      "Engine": "IronPython2",
+      "EngineName": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "e808cb19a2cc4e44a8bb91f84b188c32",
+      "NodeType": "PythonScriptNode",
       "Inputs": [
         {
-          "Id": "9695b36a620548679b2e9cef8581ba1f",
-          "Name": "passThrough",
-          "Description": "var[]..[]",
+          "Id": "4b1cff9534fd4afda28813f087a42577",
+          "Name": "IN[0]",
+          "Description": "Input #0",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         },
         {
-          "Id": "24cfe034a0a9495e8e156bbf616a89c0",
-          "Name": "waitFor",
-          "Description": "var[]..[]",
+          "Id": "70046c6fbf53491c8501f405feb00272",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "18c4053385954b52ae6431823c67dcfb",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "55e364395d724beb8af13c38580db571",
+          "Name": "IN[3]",
+          "Description": "Input #3",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -346,17 +366,17 @@
       ],
       "Outputs": [
         {
-          "Id": "406d2131c5704a659557524ed333334f",
-          "Name": "passThrough",
-          "Description": "return value",
+          "Id": "ea58e876045b48bcad5708d7076b362b",
+          "Name": "OUT",
+          "Description": "Résultat du script Python",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "Replication": "Auto",
-      "Description": "Forces a sequential order of execution. The node wired into the output of the Passthrough node will be executed *after* the node wired into the waitFor input (e.g. important for some Revit operations). The value of the passThrough input will be passed on to the node wired into the output port of the Passthrough node."
+      "Replication": "Disabled",
+      "Description": "Exécute un script Python intégré."
     }
   ],
   "Connectors": [
@@ -368,20 +388,14 @@
     },
     {
       "Start": "893b3098e57a4f20a00b685d4ac7a8a2",
-      "End": "365fc670134b470eb4794f05fb86b9fe",
-      "Id": "f8ab6d12397b492cbbcd4521c2661658",
+      "End": "349da0464a0c4091bb818ddc372e3810",
+      "Id": "633f2c0e11e9449d8579df1e76044fa6",
       "IsHidden": "False"
     },
     {
       "Start": "055e94e2ca6d439fb843f96413cede43",
-      "End": "1099402e4429465998bc2105f5af6e67",
-      "Id": "b2d98f794bdf4ea5af7a2e9cae1993f7",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "19d5115011564c36a51fde0fd6ed47c6",
-      "End": "24cfe034a0a9495e8e156bbf616a89c0",
-      "Id": "db06c44a90c44909b95f9c477d77d216",
+      "End": "e6afc457d9b14f989f4d564e7f72ec81",
+      "Id": "117b9d328b5f423cb5cb76fb16691221",
       "IsHidden": "False"
     },
     {
@@ -397,6 +411,12 @@
       "IsHidden": "False"
     },
     {
+      "Start": "b92a0ba576cd4782a705ad2637036c20",
+      "End": "70046c6fbf53491c8501f405feb00272",
+      "Id": "1942caabe67f4015837ed1e2ce27a40e",
+      "IsHidden": "False"
+    },
+    {
       "Start": "3dd2abec0afc41fe9e70858be5b26dd2",
       "End": "e4391538101c4942a38d3ddc89f30da8",
       "Id": "cae2aa6335464490822e5872f609b9c8",
@@ -406,6 +426,12 @@
       "Start": "3dd2abec0afc41fe9e70858be5b26dd2",
       "End": "1e89dc17e1e04166823cff2862361f78",
       "Id": "5d5c5abf4e29472998b784c48a360b96",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3dd2abec0afc41fe9e70858be5b26dd2",
+      "End": "55e364395d724beb8af13c38580db571",
+      "Id": "79fd6077f92a433c874ff1f33a0fc603",
       "IsHidden": "False"
     },
     {
@@ -421,37 +447,32 @@
       "IsHidden": "False"
     },
     {
-      "Start": "407c1540b4c742a4b6372e5cb0108249",
+      "Start": "2763411cf563461caadee15d8b50a4bc",
+      "End": "18c4053385954b52ae6431823c67dcfb",
+      "Id": "c3345bf9998841359b3479ab5070e4c5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7e0839741613447bb86d69c0d8a3d7d4",
       "End": "cbf4802f4a284d5c9fe3cf897031faef",
-      "Id": "1883a1d056e54784884f91dcea0bed91",
+      "Id": "06b68dfd88814c3e8c7b6726e05dd388",
       "IsHidden": "False"
     },
     {
-      "Start": "16336c5fc15d472badfea04ee09771fa",
-      "End": "9695b36a620548679b2e9cef8581ba1f",
-      "Id": "9b5ef5ef50a94c33b320bd5880836b32",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "406d2131c5704a659557524ed333334f",
+      "Start": "5e379a73b469432facef2588d2a54c41",
       "End": "4d591ae319b6489b9a3527f6364668ef",
-      "Id": "3aabf705e77f4eb8b16796753ac8c401",
+      "Id": "c7072f0ce7624ee288e0b77bff9dfe2a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "15c5374a777c498c82418416c93642a8",
+      "End": "4b1cff9534fd4afda28813f087a42577",
+      "Id": "c6e7e4e45403465abdad0a763f2e192b",
       "IsHidden": "False"
     }
   ],
-  "Dependencies": [
-    "ecce77dc-1290-438e-a056-970b256fd553"
-  ],
-  "NodeLibraryDependencies": [
-    {
-      "Name": "Clockwork for Dynamo 2.x",
-      "Version": "2.6.0",
-      "ReferenceType": "Package",
-      "Nodes": [
-        "3acf0d9f98374929bc8e0b07b6ed3370"
-      ]
-    }
-  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
   "Thumbnail": "",
   "GraphDocumentationURL": null,
   "ExtensionWorkspaceData": [
@@ -470,7 +491,7 @@
   ],
   "Author": "",
   "Linting": {
-    "activeLinter": "None",
+    "activeLinter": "Aucun",
     "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
     "warningCount": 0,
     "errorCount": 0
@@ -481,12 +502,12 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.18.1.5096",
+      "Version": "2.19.3.6394",
       "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "Camera": {
-      "Name": "_Background Preview",
+      "Name": "_Aperçu en arrière-plan",
       "EyeX": -17.0,
       "EyeY": 24.0,
       "EyeZ": 50.0,
@@ -516,8 +537,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -93.138522902846319,
-        "Y": 394.73213034463879
+        "X": -138.71159622292606,
+        "Y": 393.76249048676476
       },
       {
         "Id": "744307748a9b4306929885adf0e8b6d0",
@@ -526,8 +547,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 911.63572898044629,
-        "Y": 418.16156551218489
+        "X": 912.63919388005218,
+        "Y": 197.07761463254724
       },
       {
         "Id": "7ef48a5819464c3ca2eb23608176b8d4",
@@ -566,8 +587,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1451.2577660156971,
-        "Y": 416.67560791329373
+        "X": 913.83691256474856,
+        "Y": 474.69553129006295
       },
       {
         "Id": "38492a0920064bbf80f5adc1bb17e835",
@@ -576,23 +597,23 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 145.13536346941112,
-        "Y": 382.65300025241845
+        "X": 124.94481692114937,
+        "Y": 379.14160085272073
       },
       {
-        "Id": "3acf0d9f98374929bc8e0b07b6ed3370",
-        "Name": "Passthrough",
+        "Id": "e808cb19a2cc4e44a8bb91f84b188c32",
+        "Name": "Origin Point",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1117.4418353632743,
-        "Y": 361.25522377690277
+        "X": 910.68502877141611,
+        "Y": 749.72764308035062
       }
     ],
     "Annotations": [],
-    "X": 542.12793709436255,
-    "Y": 109.47166590723845,
-    "Zoom": 0.69233337744122614
+    "X": 486.0303382150687,
+    "Y": -287.49941017908708,
+    "Zoom": 1.1391469738088871
   }
 }
