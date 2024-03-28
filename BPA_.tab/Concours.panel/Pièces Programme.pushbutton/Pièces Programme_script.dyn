@@ -6021,36 +6021,6 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "Id": "1f236fb43cd340edad51f6570ea5595c",
-      "NodeType": "CodeBlockNode",
-      "Inputs": [
-        {
-          "Id": "18523646183b436c885be9afdfad5a7f",
-          "Name": "l",
-          "Description": "l",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "d5c5f22244c6477bbc726b3c987248e5",
-          "Name": "",
-          "Description": "Valeur de l'expression à la ligne 1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Permet de créer le code DesignScript directement",
-      "Code": "l==3 ? true:false;"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "Id": "047e4a6b123a488fbead6d2ef9bed039",
       "NodeType": "CodeBlockNode",
       "Inputs": [
@@ -6756,6 +6726,36 @@
       "FunctionSignature": "Autodesk.DesignScript.Geometry.CoordinateSystem.ByOrigin@Autodesk.DesignScript.Geometry.Point",
       "Replication": "Auto",
       "Description": "Créer un CoordinateSystem avec une origine au point d'entrée, avec les axes X et Y définis en tant qu'axes X et Y SCG.\n\nCoordinateSystem.ByOrigin (origin: Point = Autodesk.DesignScript.Geometry.Point.ByCoordinates(0, 0, 0)): CoordinateSystem"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "Id": "f0567e57bae84b3383980ae6c5ff39a9",
+      "NodeType": "CodeBlockNode",
+      "Inputs": [
+        {
+          "Id": "2f2d29b033aa405a853bb964f1a8d066",
+          "Name": "l",
+          "Description": "l",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a375a26e4f8f41ec90b03accdb0f7119",
+          "Name": "",
+          "Description": "Valeur de l'expression à la ligne 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permet de créer le code DesignScript directement",
+      "Code": "l==\"-\" ? true:false;"
     }
   ],
   "Connectors": [
@@ -8068,21 +8068,9 @@
       "IsHidden": "False"
     },
     {
-      "Start": "d5c5f22244c6477bbc726b3c987248e5",
-      "End": "73da40b81fda46f38e09be6f8c65418f",
-      "Id": "e7b99ae5fd6a4618a5d7e2e84fe72a84",
-      "IsHidden": "False"
-    },
-    {
       "Start": "4ba1b8b837cf4cd394600d13ba267881",
       "End": "959711dee3ab4819ba369c365291f64f",
       "Id": "47570f0bca41423fb0b7c83f21c5be72",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "5a75d766ebce40ae99beaf3c93c05ad2",
-      "End": "18523646183b436c885be9afdfad5a7f",
-      "Id": "d48c160c64454d60b5a24a0ace66d26a",
       "IsHidden": "False"
     },
     {
@@ -8113,6 +8101,12 @@
       "Start": "5a7d26208c1c4673a627d0bf3cf5e016",
       "End": "6eb0cc1e1bc24a92b0c4bada2ca4a12c",
       "Id": "86b3694ee705411cbd8660fca8b5a281",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5a7d26208c1c4673a627d0bf3cf5e016",
+      "End": "2f2d29b033aa405a853bb964f1a8d066",
+      "Id": "fa13db111b0e438c96fda47684a2533e",
       "IsHidden": "False"
     },
     {
@@ -8252,6 +8246,12 @@
       "End": "377547fd90ce47379218417681c208c8",
       "Id": "0e1b0f2b47e64deeb8165a691c6c88a0",
       "IsHidden": "False"
+    },
+    {
+      "Start": "a375a26e4f8f41ec90b03accdb0f7119",
+      "End": "73da40b81fda46f38e09be6f8c65418f",
+      "Id": "a420224e1d90447daa7d66332e41361d",
+      "IsHidden": "False"
     }
   ],
   "Dependencies": [
@@ -8379,7 +8379,7 @@
       ]
     },
     {
-      "Name": "Copie de Gabarit_Tableau Excel-surfaces programmes.xlsx",
+      "Name": "Gabarit_Tableau Excel.xlsx",
       "ReferenceType": "External",
       "Nodes": [
         "85e0bb3683be4a8abf234f5dd71fdefd"
@@ -9867,18 +9867,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 3892.7020799254815,
-        "Y": 84.962863495322381
-      },
-      {
-        "Id": "1f236fb43cd340edad51f6570ea5595c",
-        "Name": "Code Block",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 3509.1271874724916,
-        "Y": 112.03101415725746
+        "X": 3907.1475792499123,
+        "Y": 83.924078382736525
       },
       {
         "Id": "047e4a6b123a488fbead6d2ef9bed039",
@@ -9897,8 +9887,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 3213.8570546324518,
-        "Y": 95.724688068829437
+        "X": 3168.1505096786777,
+        "Y": 90.530762505900611
       },
       {
         "Id": "3e8abb0a2d8f47c19871849b000cd6e6",
@@ -9907,8 +9897,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 3010.1292348596417,
-        "Y": 94.384401259112337
+        "X": 2919.619069667453,
+        "Y": 162.90244597338597
       },
       {
         "Id": "72b6fa01e4af49e584252ce6a9cbc57d",
@@ -10089,6 +10079,16 @@
         "ShowGeometry": false,
         "X": 9901.75027217851,
         "Y": 137.62400532943187
+      },
+      {
+        "Id": "f0567e57bae84b3383980ae6c5ff39a9",
+        "Name": "Code Block",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 3147.9671677177221,
+        "Y": 242.1331302319918
       }
     ],
     "Annotations": [
@@ -10216,7 +10216,7 @@
         "FontSize": 36.0,
         "GroupStyleId": "00000000-0000-0000-0000-000000000000",
         "InitialTop": 566.69199129261563,
-        "InitialHeight": 511.53959294672313,
+        "InitialHeight": 516.92489069853843,
         "TextblockHeight": 63.0,
         "Background": "#FFFF7BAC"
       },
@@ -10695,15 +10695,15 @@
           "18751f10a22a41a482f460af83c20862",
           "357295b4a85c49aeb1a23b284b90aa18",
           "8d4a734bab9146e68c7dc9a1d08b98c9",
-          "1f236fb43cd340edad51f6570ea5595c",
           "feacd417fb2f4b87b808613bb711edbe",
-          "3e8abb0a2d8f47c19871849b000cd6e6"
+          "3e8abb0a2d8f47c19871849b000cd6e6",
+          "f0567e57bae84b3383980ae6c5ff39a9"
         ],
         "HasNestedGroups": false,
-        "Left": 3000.1292348596417,
+        "Left": 2909.619069667453,
         "Top": -133.52438157895472,
-        "Width": 1654.6039476518908,
-        "Height": 379.07509189994107,
+        "Width": 1745.1141128440795,
+        "Height": 507.65751181094652,
         "FontSize": 36.0,
         "GroupStyleId": "00000000-0000-0000-0000-000000000000",
         "InitialTop": -60.524381578954717,
@@ -10821,8 +10821,8 @@
         "Background": "#FF48B9FF"
       }
     ],
-    "X": 10811.606073259629,
-    "Y": -265.53716295442473,
-    "Zoom": 1.1141445239453254
+    "X": -6853.18156239453,
+    "Y": -182.65145058310168,
+    "Zoom": 0.54685823959549817
   }
 }
